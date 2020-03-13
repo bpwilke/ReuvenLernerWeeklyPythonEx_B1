@@ -3,12 +3,13 @@ from collections import Counter
 visits = dict()             # initialize global dict()
 
 def collect_places():
+    visits.clear()
     inputText = 'init'
     while len(inputText) != 0:
-        inputText = input("Enter your city and country with comma separation or blank to end:")
+        inputText = input("Tell me where you went: ").strip()
         if ', ' not in inputText and inputText is not None:
             if len(inputText) != 0:
-                print("That's not a legal city, country combination - try again.")
+                print("That's not a legal city, country combination")
         else:
             city = inputText.split(", ")[0]          # extract city from input
             country = inputText.split(", ")[1]       # extract country from input
@@ -17,7 +18,6 @@ def collect_places():
                 visits[country].append(city)         # add our first city to that list
             else:                                    # else country already exists as key in visit dict
                 visits[country].append(city)         # so add a new city to the list
-    display_places(visits)
 
 def display_places():
     print("You visited:")
@@ -29,6 +29,10 @@ def display_places():
                 print('    {0} ({1})'.format(city, count))  # print city with count in (n) format
             else:
                 print('    {}'.format(city))                # otherwise 1, just print city name
+
+if __name__ == '__main__':
+	collect_places()
+	display_places()
 
 
 
